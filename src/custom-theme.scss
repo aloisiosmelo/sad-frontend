@@ -1,0 +1,14 @@
+/* make the customizations */
+$theme-colors: (
+        "info": tomato,
+        "danger": teal,
+        "primary": #DB1E2F
+);
+
+$nav-tabs-link-active-bg: #DB1E2F;
+$nav-pills-link-active-bg: #DB1E2F;
+$nav-link-color: #DB1E2F;
+$nav-pills-border-radius: 20px;
+$nav-link-hover-color: #DB1E2F;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
