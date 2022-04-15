@@ -1,0 +1,25 @@
+.App {
+    margin-top: 3%;
+}
+
+.active {
+    background-color: #DC3545 !important;
+    color: #ffffff;
+  }
+
+  .nav-link, .btn {
+    border-radius: 40px !important;
+  }
+
+  .nav-link{
+    border: 1px solid #DC3545 !important;
+    color:#DC3545;
+  }
+  .nav-item {
+    justify-content: space-between;
+    margin-right: 15px;
+  }
+
+  .nav-link:focus, .nav-link:hover {
+    color:#DC3545;
+  }

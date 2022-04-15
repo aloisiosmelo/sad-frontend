@@ -2,13 +2,13 @@ import { FC } from "react";
 import {  Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Outlet } from "react-router-dom";
-
+import "./RankingTab.style.css";
 
 const RankingTab: FC = () => {
-
+//"mt-4 pb-4"
     return (
         <div >
-            <Nav variant="pills" className="mt-4 pb-4">
+            <Nav variant="pills" className="mt-4 pb-4 nav-container">
                 <Nav.Item >
                     <LinkContainer to="/dashboard">
                         <Nav.Link >Meus rankings</Nav.Link>

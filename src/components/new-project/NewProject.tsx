@@ -44,7 +44,7 @@ const NewProject: FC = () => {
                         <Form.Control type="text" placeholder="ranking" />
                     </Form.Group>
                     
-                    <Button variant="primary" type="submit">
+                    <Button variant="danger" type="submit">
                         Registrar
                     </Button>
                 </Form>
