@@ -1,8 +1,24 @@
 import { FC } from "react";
 import { Form, Button, ButtonGroup } from "react-bootstrap";
+import * as XLSX from "xlsx";
 
 
 const NewRanking: FC = () => {
+
+    const handleFile = (e) => {
+        const [file] = e.target.files;
+        const reader = new FileReader();
+    
+        reader.onload = (evt) => {
+          const bstr = evt.target.result;
+          const wb = XLSX.read(bstr, { type: "binary" });
+          const wsname = wb.SheetNames[0];
+          const ws = wb.Sheets[wsname];
+          const data = XLSX.utils.sheet_to_csv(ws);
+          console.log(data);//leitura do arquivo
+        };
+        reader.readAsBinaryString(file);
+      };
 
     return (
         <div>
@@ -11,7 +27,7 @@ const NewRanking: FC = () => {
             <div className="d-flex align-items-start flex-wrap gap-5 importar-bloco mb-4">
                 <Form.Group className="mb-12" controlId="formImportar">
                         <Form.Label>Você pode importar uma planilhar ou adicionar um novo</Form.Label>
-                        <Form.Control type="file" name="importar" placeholder="Insira uma planilha" />
+                        <Form.Control type="file" onChange={handleFile} name="importar" placeholder="Insira uma planilha" />
                 </Form.Group>
             </div>
             <div className="d-flex align-items-start flex-wrap gap-5">
