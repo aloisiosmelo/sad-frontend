@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Button } from 'react-bootstrap';
+import { Button, ButtonGroup } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 
@@ -12,9 +12,11 @@ const Introduction: FC = () => {
             Este é um software dedicado a resolver os problemas de direcionamento de verbas em projetos da UFPE. Sinta-se livre para utilizar esta ferramenta e descobrir qual é a melhor decisão no momento.
             </p>
             <LinkContainer to="/dashboard">
-                <Button className="mt-4 rounded-2">    
-                    Começar
-                </Button>
+                <ButtonGroup size="lg" className="mb-4">
+                    <Button variant="danger" className="mt-4 rounded-2">    
+                        Começar
+                    </Button>
+                </ButtonGroup>
             </LinkContainer>
             
         </div>

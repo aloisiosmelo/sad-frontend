@@ -1,6 +1,5 @@
 const AppReducer = (state, action) => {
 
-
     switch(action.type) {
 
         case 'CREATE_RANKING':
@@ -18,9 +17,9 @@ const AppReducer = (state, action) => {
             return {...state, rankingIdCounter: state.rankingIdCounter + 1}
         default:
             return {...state}
+
     }
-
-
+    
 }
 
 export default AppReducer;
