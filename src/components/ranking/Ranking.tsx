@@ -1,9 +1,15 @@
 import { FC, useState } from 'react';
 import { Button, Row, Col, Modal, Form, ButtonGroup } from 'react-bootstrap';
+import { X } from 'react-bootstrap-icons';
+import { useNavigate, } from 'react-router-dom';
+import { useContext } from 'react';
 
-const Ranking: FC = ({id}) => {
+const Ranking: FC = ({ranking}) => {
 
-    // modal
+    const navigate = useNavigate()
+
+    const goToRankingDetails = () => navigate(`/dashboard/ranking-detail/ranking/${ranking.rankingId}`)
+    
     const modalBody = (id) => {
         return (
             <Row> 
@@ -56,7 +62,7 @@ const Ranking: FC = ({id}) => {
 
                     </Form>
                     <ButtonGroup size="lg" className="mb-4">
-                        <Button variant="danger" onClick={handleClose}>
+                        <Button variant="danger" onClick={goToRankingDetails}>
                             Salvar
                         </Button>
                     </ButtonGroup>
@@ -71,13 +77,14 @@ const Ranking: FC = ({id}) => {
 
     return (
         <div className="d-flex flex-column bg-danger p-3 rounded text-white justify-content-start align-items-start" >
-            <span className="font-weight-bold fs-5">Nome do ranking</span>
+            <X  style={{height: '30px', width: '30px'}} className="align-self-end"/>
+            <span className="font-weight-bold fs-5">{ranking.title}</span>
           
             <p className="fs-7">
-                Criado em 26 de Março de 2022
+                Criado em {ranking.date}
             </p>
 
-            <Button onClick={() => handleShow()} variant="light">Abrir</Button>
+            <Button onClick={goToRankingDetails} variant="light">Abrir</Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

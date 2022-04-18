@@ -1,7 +1,12 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { Form, Button, ButtonGroup } from "react-bootstrap";
 import * as XLSX from "xlsx";
+import { AppContext } from "../../App";
+import { useForm } from 'react-hook-form'
+import 'moment/locale/pt-br';
+import moment from "moment";
 
+moment().locale('pt-br')
 
 const NewRanking: FC = () => {
 
@@ -20,6 +25,13 @@ const NewRanking: FC = () => {
         reader.readAsBinaryString(file);
       };
 
+      const { register, handleSubmit } = useForm()
+      const { dispatch, state } = useContext(AppContext)
+      const createRanking = (rankingName) => {
+          dispatch({type: 'CREATE_RANKING', rankingName: rankingName.title, date: moment().format('LL')})
+          
+    }
+
     return (
         <div>
             <h1 className="fs-4 font-weight-normal">Novo Ranking</h1>
@@ -31,54 +43,13 @@ const NewRanking: FC = () => {
                 </Form.Group>
             </div>
             <div className="d-flex align-items-start flex-wrap gap-5">
-                <Form>
+                <Form onSubmit={handleSubmit(createRanking)}>
                     <Form.Group className="mb-12" controlId="formNome">
                         <Form.Label>Título do ranking</Form.Label>
-                        <Form.Control type="text" name="nome" placeholder="Insira um nome que represente o ranking que irá criar" />
+                        <Form.Control {...register("title")} type="text" placeholder="Insira um nome que represente o ranking que irá criar" />
                     </Form.Group>
-
-                    <Form.Group className="mb-12" controlId="formA">
-                        <Form.Label>Impactos da função fim da UFPE</Form.Label>
-                        <Form.Control type="text" name="a" placeholder="A" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-12" controlId="formA">
-                        <Form.Label>Impactos da função fim da UFPE</Form.Label>
-                        <Form.Control type="text" name="b" placeholder="B" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-12" controlId="formA">
-                        <Form.Label>Impactos da função fim da UFPE</Form.Label>
-                        <Form.Control type="text" name="c" placeholder="C" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-12" controlId="formA">
-                        <Form.Label>Impactos da função fim da UFPE</Form.Label>
-                        <Form.Control type="text" name="d" placeholder="D" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-12" controlId="formA">
-                        <Form.Label>Impactos da função fim da UFPE</Form.Label>
-                        <Form.Control type="text" name="e" placeholder="E" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-12" controlId="formA">
-                        <Form.Label>Impactos da função fim da UFPE</Form.Label>
-                        <Form.Control type="text" name="f" placeholder="F" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-12" controlId="formA">
-                        <Form.Label>Impactos da função fim da UFPE</Form.Label>
-                        <Form.Control type="text" name="g" placeholder="G" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-12" controlId="formA">
-                        <Form.Label>Impactos da função fim da UFPE</Form.Label>
-                        <Form.Control type="text" name="h" placeholder="H" />
-                    </Form.Group>
-
                     <ButtonGroup size="lg" className="mb-4">
-                        <Button variant="danger" className="">
+                        <Button variant="danger" className="" type="submit">
                                 Registrar
                         </Button>
                     </ButtonGroup>

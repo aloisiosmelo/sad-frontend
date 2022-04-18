@@ -5,7 +5,7 @@ import NewRanking from './components/new-ranking';
 import RankingDetailTab from './components/ranking-detail-tab';
 import NewProject from './components/new-project';
 import RankingList from './components/ranking-list';
-
+import ProjectList from './components/project-list';
 
 
 export default [
@@ -39,10 +39,10 @@ export default [
                 children: [
                     {
                         path: 'ranking/:rankingId',
-                        element: ''
+                        element: <ProjectList />
                     },
                     {
-                        path: 'new-project',
+                        path: 'new-project/:rankingId',
                         element: <NewProject />
                     }
                 ]
