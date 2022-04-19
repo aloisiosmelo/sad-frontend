@@ -15,9 +15,6 @@ const NewProject: FC = () => {
         dispatch({type: 'CREATE_PROJECT', project: project, rankingId: parseInt(rankingId) })
     } 
     
-    
-
-
 
     return (
         <div>

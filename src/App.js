@@ -30,7 +30,6 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('sad', JSON.stringify(state))
-    console.log(state)
   }, [state])
 
   return (

@@ -12,10 +12,7 @@ const RankingDetailTab: FC = () => {
     const [ rankingId, setRankingId ] = useState('')
     let params = useParams()
 
-
-    if(!rankingId ) {
-        setRankingId(params.rankingId)
-    }
+    if(!rankingId ) setRankingId(params.rankingId)
     
     
     return (
@@ -23,7 +20,7 @@ const RankingDetailTab: FC = () => {
             <div >
                 <Nav variant="pills" className="mt-4 pb-4 d-flex align-items-center">
                     <Nav.Item >
-                        <LinkContainer to="/dashboard">
+                        <LinkContainer  to="/dashboard">
                             <Nav.Link >
                                 <ArrowLeftCircleFill size={40} />
                             </Nav.Link>
