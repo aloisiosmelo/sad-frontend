@@ -10,10 +10,10 @@ const Dashboard: FC = ({children}) => {
 
 
     return(
-        <Container>
+        <div className="container-fluid">
             <h1>O que deseja fazer?</h1>
             <Outlet />
-        </Container>
+        </div>
             
 
     )

@@ -1,3 +1,4 @@
+import './style.css'
 import { FC, useState } from 'react'
 import { Nav } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
@@ -12,6 +13,7 @@ const RankingDetailTab: FC = () => {
     const [ rankingId, setRankingId ] = useState('')
     let params = useParams()
 
+
     if(!rankingId ) setRankingId(params.rankingId)
     
     
@@ -21,8 +23,8 @@ const RankingDetailTab: FC = () => {
                 <Nav variant="pills" className="mt-4 pb-4 d-flex align-items-center">
                     <Nav.Item >
                         <LinkContainer  to="/dashboard">
-                            <Nav.Link >
-                                <ArrowLeftCircleFill size={40} />
+                            <Nav.Link className="no-border">
+                                <ArrowLeftCircleFill size={38} />
                             </Nav.Link>
                         </LinkContainer>
                     </Nav.Item>

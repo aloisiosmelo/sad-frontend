@@ -49,7 +49,7 @@ const NewRanking: FC = () => {
                         <Form.Control {...register("title")} type="text" placeholder="Insira um nome que represente o ranking que irá criar" />
                     </Form.Group>
                     <ButtonGroup size="lg" className="mb-4">
-                        <Button variant="danger" className="" type="submit">
+                        <Button variant="danger" className="px-3" type="submit">
                                 Registrar
                         </Button>
                     </ButtonGroup>

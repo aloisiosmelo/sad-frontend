@@ -10,7 +10,7 @@ const Project: FC = ({rankingId, Nome, projectId}) => {
     const deleteProject = () => dispatch({type: 'REMOVE_PROJECT', rankingId: parseInt(rankingId), projectId: parseInt(projectId)})
     
     return (
-        <div className="bg-danger w-75 rounded-2 d-flex p-2 align-items-center text-light">
+        <div className="bg-danger w-100 rounded-2 d-flex p-2 align-items-center text-light">
             <span 
                 style={{width: '30px', height: '30px'}} 
                 className="d-flex justify-content-center align-items-center bg-light rounded-circle p-4 justify-self-baseline text-dark">

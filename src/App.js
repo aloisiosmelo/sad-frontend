@@ -1,10 +1,12 @@
 import './custom-theme.scss'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import './App.css';
 import  React, { FC, useEffect, useReducer } from 'react';
 import { useRoutes } from 'react-router-dom';
 import routes from './routes';
 import { createContext } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+
 import AppReducer from './reducer';
 
 
@@ -30,6 +32,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('sad', JSON.stringify(state))
+
   }, [state])
 
   return (

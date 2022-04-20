@@ -13,7 +13,7 @@ const Introduction: FC = () => {
             </p>
             <LinkContainer to="/dashboard">
                 <ButtonGroup size="lg" className="mb-4">
-                    <Button variant="danger" className="mt-4 rounded-2">    
+                    <Button variant="danger" className="mt-4">    
                         Começar
                     </Button>
                 </ButtonGroup>

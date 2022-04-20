@@ -34,8 +34,6 @@ const AppReducer = (state, action) => {
             }
         
         case 'REMOVE_PROJECT':
-
-            console.log(`From action: Ranking - ${action.rankingId} and Project - ${action.projectId}`)
             
             return {
                 ...state,
