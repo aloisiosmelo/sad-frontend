@@ -7,6 +7,9 @@ const initialState = {
   isSucessModalOpened: false,
   innerModalFunction: undefined,
   isUserSureModalOpened: true,
+  deletingRankingId: undefined,
+  deletingProjectId: undefined,
+  deletionType: undefined,
 };
 
 const AppReducer = (state, action) => {
@@ -76,10 +79,20 @@ const AppReducer = (state, action) => {
       };
 
     case "IS_USER_SURE":
+      // isSucessModalOpened: false,
+      // innerModalFunction: undefined,
+      // isUserSureModalOpened: true,
+      // deletingRankingId: undefined,
+      // deletingProjectId: undefined,
+      // deletionType: undefined,
+
       return {
         ...state,
         isUserSureModalOpened: true,
-        innerModalFunction: action.confirmFunction,
+        innerModalFunction: action.innerModalFunction,
+        deletionType: action.deletionType,
+        deletingRankingId: action.deletingRankingId,
+        deletingProjectId: action.deletingProjectId || undefined,
       };
 
     case "CLOSE_SUCESS":

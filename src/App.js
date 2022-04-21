@@ -8,7 +8,6 @@ import React, { FC, useEffect, useReducer } from "react";
 import { useRoutes } from "react-router-dom";
 import { Alert, Button, Modal } from "react-bootstrap";
 import { createContext } from "react";
-import Project from "./components/project";
 
 export const AppContext = createContext();
 
@@ -55,7 +54,16 @@ function App() {
         <Modal.Body>Este documento será deletado permanentemente.</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary">Close</Button>
-          <Button variant="danger">Save Changes</Button>
+          {state.deletionType === "RANKING" ? (
+            <Button
+              variant="danger"
+              onClick={() => state.innerModalFunction(state.deletingRankingId)}
+            >
+              Save Changes
+            </Button>
+          ) : (
+            <Button variant="danger">Save Changes baba</Button>
+          )}
         </Modal.Footer>
       </Modal>
     </AppContext.Provider>

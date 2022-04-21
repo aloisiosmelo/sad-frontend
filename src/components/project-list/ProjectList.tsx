@@ -30,13 +30,7 @@ const ProjectList: FC = () => {
     ],
   };
   const ranquear = (): void => {
-    fetch("http://localhost:5201", {
-      method: "POST",
-      body: JSON.stringify(send),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    axios.post("https://localhost:7201", send);
   };
 
   return (
