@@ -7,6 +7,7 @@ import "moment/locale/pt-br";
 import moment from "moment";
 import validationUtilities from "../../utils/validation";
 import ValidationMessage from "../validation-message";
+import { useNavigate } from "react-router-dom";
 
 moment().locale("pt-br");
 
@@ -25,6 +26,8 @@ const NewRanking: FC = () => {
     };
     reader.readAsBinaryString(file);
   };
+
+  const navigate = useNavigate();
 
   const {
     register,

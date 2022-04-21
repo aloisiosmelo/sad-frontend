@@ -1,6 +1,6 @@
 import { FC } from "react";
 // useState
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 // Row, Col, Modal, Form, ButtonGroup
 import { X } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
@@ -84,25 +84,20 @@ const Ranking: FC = ({ ranking }) => {
     <div className="d-flex flex-column bg-danger p-3 rounded text-white justify-content-start align-items-start">
       <X
         onClick={deleteRanking}
-        style={{ height: "30px", width: "30px" }}
+        style={{ height: "30px", width: "30px", padding: "0" }}
         className="align-self-end cursor-pointer"
       />
-      <span className="font-weight-bold fs-5">{ranking.title}</span>
+      <p className="fs-5 fw-semibold mb-0">{ranking.title}</p>
 
-      <p className="fs-7">Criado em {ranking.date}</p>
+      <span className="fw-light mb-3">Criado em {ranking.date}</span>
 
-      <Button onClick={goToRankingDetails} variant="light">
+      <Button
+        onClick={goToRankingDetails}
+        variant="light"
+        className="px-4 text-danger"
+      >
         Abrir
       </Button>
-
-      {/* <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title></Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {modalBody(1)}
-                </Modal.Body>
-            </Modal> */}
     </div>
   );
 };

@@ -42,7 +42,7 @@ const NewProject: FC = () => {
                 maxLength: { value: 15, message: validation.tooLong("Nome") },
               })}
               type="text"
-              placeholder="Critério A"
+              placeholder="Ex: Projeto 1"
             />
 
             {errors.Nome && (
@@ -61,12 +61,13 @@ const NewProject: FC = () => {
                   value: pattern,
                   message: validation.errorRegex,
                 },
+                valueAsNumber: true,
               })}
-              type="text"
+              type="number"
               placeholder="Critério A"
             />
-            {errors.Nome && (
-              <ValidationMessage>{errors.Nome.message}</ValidationMessage>
+            {errors.CriterioA && (
+              <ValidationMessage>{errors.CriterioA.message}</ValidationMessage>
             )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -80,12 +81,13 @@ const NewProject: FC = () => {
                   message: validation.isNecessary("critério"),
                 },
                 pattern: { value: pattern, message: validation.errorRegex },
+                valueAsNumber: true,
               })}
-              type="text"
-              placeholder="ranking"
+              type="number"
+              placeholder="Critério B"
             />
-            {errors.Nome && (
-              <ValidationMessage>{errors.Nome.message}</ValidationMessage>
+            {errors.CriterioB && (
+              <ValidationMessage>{errors.CriterioB.message}</ValidationMessage>
             )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -97,12 +99,13 @@ const NewProject: FC = () => {
                   message: validation.isNecessary("critério"),
                 },
                 pattern: { value: pattern, message: validation.errorRegex },
+                valueAsNumber: true,
               })}
-              type="text"
-              placeholder="ranking"
+              type="number"
+              placeholder="Critério C"
             />
-            {errors.Nome && (
-              <ValidationMessage>{errors.Nome.message}</ValidationMessage>
+            {errors.CriterioC && (
+              <ValidationMessage>{errors.CriterioC.message}</ValidationMessage>
             )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -116,12 +119,13 @@ const NewProject: FC = () => {
                   message: validation.isNecessary("critério"),
                 },
                 pattern: { value: pattern, message: validation.errorRegex },
+                valueAsNumber: true,
               })}
-              type="text"
-              placeholder="ranking"
+              type="number"
+              placeholder="Critério D"
             />
-            {errors.Nome && (
-              <ValidationMessage>{errors.Nome.message}</ValidationMessage>
+            {errors.CriterioD && (
+              <ValidationMessage>{errors.CriterioD.message}</ValidationMessage>
             )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -135,12 +139,13 @@ const NewProject: FC = () => {
                   message: validation.isNecessary("critério"),
                 },
                 pattern: { value: pattern, message: validation.errorRegex },
+                valueAsNumber: true,
               })}
-              type="text"
-              placeholder="ranking"
+              type="number"
+              placeholder="Critério E"
             />
-            {errors.Nome && (
-              <ValidationMessage>{errors.Nome.message}</ValidationMessage>
+            {errors.CriterioE && (
+              <ValidationMessage>{errors.CriterioE.message}</ValidationMessage>
             )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -152,12 +157,13 @@ const NewProject: FC = () => {
                   message: validation.isNecessary("critério"),
                 },
                 pattern: { value: pattern, message: validation.errorRegex },
+                valueAsNumber: true,
               })}
-              type="text"
-              placeholder="ranking"
+              type="number"
+              placeholder="Critério F"
             />
-            {errors.Nome && (
-              <ValidationMessage>{errors.Nome.message}</ValidationMessage>
+            {errors.CriterioF && (
+              <ValidationMessage>{errors.CriterioF.message}</ValidationMessage>
             )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -169,12 +175,13 @@ const NewProject: FC = () => {
                   message: validation.isNecessary("critério"),
                 },
                 pattern: { value: pattern, message: validation.errorRegex },
+                valueAsNumber: true,
               })}
-              type="text"
-              placeholder="ranking"
+              type="number"
+              placeholder="Critério G"
             />
-            {errors.Nome && (
-              <ValidationMessage>{errors.Nome.message}</ValidationMessage>
+            {errors.CriterioG && (
+              <ValidationMessage>{errors.CriterioG.message}</ValidationMessage>
             )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -186,12 +193,13 @@ const NewProject: FC = () => {
                   message: validation.isNecessary("critério"),
                 },
                 pattern: { value: pattern, message: validation.errorRegex },
+                valueAsNumber: true,
               })}
-              type="text"
-              placeholder="ranking"
+              type="number"
+              placeholder="Critério H"
             />
-            {errors.Nome && (
-              <ValidationMessage>{errors.Nome.message}</ValidationMessage>
+            {errors.CriterioH && (
+              <ValidationMessage>{errors.CriterioH.message}</ValidationMessage>
             )}
           </Form.Group>
 
