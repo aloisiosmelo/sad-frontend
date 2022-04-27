@@ -14,6 +14,8 @@ moment().locale("pt-br");
 const NewRanking: FC = () => {
   const handleFile = (e) => {
     const [file] = e.target.files;
+    console.log(e.target.files);
+
     const reader = new FileReader();
 
     reader.onload = (evt) => {
@@ -32,6 +34,7 @@ const NewRanking: FC = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const { dispatch } = useContext(AppContext);
@@ -41,6 +44,8 @@ const NewRanking: FC = () => {
       rankingName: rankingName.title,
       date: moment().format("LL"),
     });
+
+    reset();
   };
 
   return (

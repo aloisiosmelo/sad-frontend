@@ -10,7 +10,7 @@ import axios from "axios";
 const ProjectList: FC = () => {
   const { rankingId } = useParams();
   const { state } = useContext(AppContext);
-  const { projects } = state.rankings.find(
+  const ranking = state.rankings.find(
     (ranking) => ranking.rankingId == rankingId
   );
 
@@ -42,8 +42,10 @@ const ProjectList: FC = () => {
       >
         Ranquear <BarChartFill className="ml-3" />
       </Button>
-      {projects.length ? (
-        projects.map((project) => (
+      {!ranking ? (
+        <EmptyMessage>Nenhum projeto foi encontrado</EmptyMessage>
+      ) : ranking.projects.length ? (
+        ranking.projects.map((project) => (
           <Project key={project.projectId} {...project} rankingId={rankingId} />
         ))
       ) : (

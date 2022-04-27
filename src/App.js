@@ -8,12 +8,14 @@ import React, { FC, useEffect, useReducer } from "react";
 import { useRoutes } from "react-router-dom";
 import { Alert, Button, Modal } from "react-bootstrap";
 import { createContext } from "react";
+import Table from "./components/table";
 
 export const AppContext = createContext();
 
 const initialState = {
   firstTimeUser: true,
   rankings: [],
+  rankedProjects: [],
   isFetching: false,
   rankingIdCounter: 0,
   isRankingModalOpened: false,
@@ -23,6 +25,40 @@ const initialState = {
 };
 
 function App() {
+  const header = [
+    {
+      Header: "Prioridade",
+      accessor: "rankingNumber",
+    },
+    {
+      Header: "Projeto",
+      accessor: "Nome",
+    },
+  ];
+
+  const data = [
+    {
+      Nome: "Projeto 1",
+      rankingNumber: "1",
+    },
+    {
+      Nome: "Projeto 2",
+      rankingNumber: "1",
+    },
+    {
+      Nome: "Projeto 3",
+      rankingNumber: "1",
+    },
+    {
+      Nome: "Projeto 4",
+      rankingNumber: "1",
+    },
+  ];
+
+  const CloseAll: void = () => {
+    dispatch({ type: "CLOSE_SUCESS" });
+  };
+
   const element = useRoutes(routes);
 
   const [state, dispatch] = useReducer(
@@ -38,33 +74,60 @@ function App() {
     <AppContext.Provider value={{ state, dispatch }}>
       <div className="App">{element}</div>
 
-      <Modal
-        show={state.isSucessModalOpened}
-        onClick={() => dispatch({ type: "CLOSE_SUCESS" })}
-      >
+      <Modal show={state.isSucessModalOpened} backdrop={true} onHide={CloseAll}>
         <Alert variant="success" className="mb-0">
           <Alert.Heading className="fw-normal">Sucesso!</Alert.Heading>
         </Alert>
       </Modal>
 
-      <Modal show={state.isUserSureModalOpened}>
+      <Modal
+        show={state.isUserSureModalOpened}
+        backdrop={true}
+        onHide={CloseAll}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Você tem certeza que quer fazer isso?</Modal.Title>
         </Modal.Header>
         <Modal.Body>Este documento será deletado permanentemente.</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary">Close</Button>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              dispatch({ type: "CLOSE_SUCESS" });
+            }}
+          >
+            Cancelar
+          </Button>
           {state.deletionType === "RANKING" ? (
             <Button
               variant="danger"
               onClick={() => state.innerModalFunction(state.deletingRankingId)}
             >
-              Save Changes
+              Confirmar
             </Button>
           ) : (
-            <Button variant="danger">Save Changes baba</Button>
+            <Button
+              variant="danger"
+              onClick={() =>
+                state.innerModalFunction(
+                  state.deletingRankingId,
+                  state.deletingProjectId
+                )
+              }
+            >
+              Confirmar
+            </Button>
           )}
         </Modal.Footer>
+      </Modal>
+      <Modal show={false} backdrop={true} onHide={CloseAll}>
+        <Modal.Header closeButton>
+          <Modal.Title>Projetos ranqueados</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <Table columns={header} data={data} />
+        </Modal.Body>
       </Modal>
     </AppContext.Provider>
   );

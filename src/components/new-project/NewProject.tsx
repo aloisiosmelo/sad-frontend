@@ -11,6 +11,7 @@ const NewProject: FC = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const { rankingId } = useParams();
@@ -21,6 +22,8 @@ const NewProject: FC = () => {
       project: project,
       rankingId: parseInt(rankingId),
     });
+
+    reset();
   };
 
   const pattern = /^[0-9]*$/i;

@@ -42,8 +42,6 @@ const AppReducer = (state, action) => {
       };
 
     case "CREATE_PROJECT":
-      console.log(action);
-
       return {
         ...state,
         rankings: state.rankings.map((ranking) =>
@@ -79,26 +77,32 @@ const AppReducer = (state, action) => {
       };
 
     case "IS_USER_SURE":
-      // isSucessModalOpened: false,
-      // innerModalFunction: undefined,
-      // isUserSureModalOpened: true,
-      // deletingRankingId: undefined,
-      // deletingProjectId: undefined,
-      // deletionType: undefined,
-
       return {
         ...state,
         isUserSureModalOpened: true,
         innerModalFunction: action.innerModalFunction,
         deletionType: action.deletionType,
         deletingRankingId: action.deletingRankingId,
-        deletingProjectId: action.deletingProjectId || undefined,
+        deletingProjectId: action.deletingProjectId,
       };
 
     case "CLOSE_SUCESS":
+      // isSucessModalOpened: false,
+      // innerModalFunction: undefined,
+      // isUserSureModalOpened: true,
+      // deletingRankingId: undefined,
+      // deletingProjectId: undefined,
+      // deletionType: undefined,
       return {
         ...state,
         isSucessModalOpened: false,
+        isUserSureModalOpened: false,
+        innerModalFunction: undefined,
+      };
+
+    case "CANCEL":
+      return {
+        ...state,
       };
     default:
       return { ...state };
