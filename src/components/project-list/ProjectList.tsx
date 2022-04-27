@@ -9,7 +9,7 @@ import axios from "axios";
 
 const ProjectList: FC = () => {
   const { rankingId } = useParams();
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const ranking = state.rankings.find(
     (ranking) => ranking.rankingId == rankingId
   );
@@ -33,10 +33,14 @@ const ProjectList: FC = () => {
     axios.post("https://localhost:7201", send);
   };
 
+  const ListarRanking = (): void => {
+    dispatch({ type: "LIST_RANKING" });
+  };
+
   return (
     <div className="d-flex gap-3 flex-wrap ">
       <Button
-        onClick={() => ranquear()}
+        onClick={() => ListarRanking()}
         variant="danger"
         className="px-3 d-flex align-items-center gap-2"
       >

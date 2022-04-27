@@ -56,7 +56,7 @@ function App() {
   ];
 
   const CloseAll: void = () => {
-    dispatch({ type: "CLOSE_SUCESS" });
+    dispatch({ type: "CANCEL" });
   };
 
   const element = useRoutes(routes);
@@ -93,7 +93,7 @@ function App() {
           <Button
             variant="secondary"
             onClick={() => {
-              dispatch({ type: "CLOSE_SUCESS" });
+              dispatch({ type: "CANCEL" });
             }}
           >
             Cancelar
@@ -120,7 +120,11 @@ function App() {
           )}
         </Modal.Footer>
       </Modal>
-      <Modal show={false} backdrop={true} onHide={CloseAll}>
+      <Modal
+        show={state.isRankingModalOpened}
+        backdrop={true}
+        onHide={CloseAll}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Projetos ranqueados</Modal.Title>
         </Modal.Header>

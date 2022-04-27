@@ -86,7 +86,7 @@ const AppReducer = (state, action) => {
         deletingProjectId: action.deletingProjectId,
       };
 
-    case "CLOSE_SUCESS":
+    case "CANCEL":
       // isSucessModalOpened: false,
       // innerModalFunction: undefined,
       // isUserSureModalOpened: true,
@@ -97,12 +97,14 @@ const AppReducer = (state, action) => {
         ...state,
         isSucessModalOpened: false,
         isUserSureModalOpened: false,
+        isRankingModalOpened: false,
         innerModalFunction: undefined,
       };
 
-    case "CANCEL":
+    case "LIST_RANKING":
       return {
         ...state,
+        isRankingModalOpened: true,
       };
     default:
       return { ...state };
