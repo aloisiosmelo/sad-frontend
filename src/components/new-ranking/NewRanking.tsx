@@ -6,8 +6,20 @@ import "moment/locale/pt-br";
 import moment from "moment";
 import { useFormik, Formik, Field, Form as FormikForm } from "formik";
 import NumberFormat from "react-number-format";
-
+import * as Yup from "yup";
+import { NutFill } from "react-bootstrap-icons";
+import ValidationMessage from "../validation-message";
 moment().locale("pt-br");
+
+const SignupSchema = Yup.object().shape({
+  rankingName: Yup.string()
+
+    .min(5, "Título muito curto!")
+
+    .max(20, "Título muito longo!")
+
+    .required("Um título é necessário"),
+});
 
 const RemoveFormat = (value) => {
   return parseInt(
@@ -17,14 +29,6 @@ const RemoveFormat = (value) => {
       .join("")
   );
 };
-
-// <Field
-// name="rankingName"
-// thousandSeparator={true}
-// as={NumberFormat}
-// customInput={Form.Control}
-// removeFormatting={RemoveFormat}
-// />
 
 const NewRanking: FC = () => {
   const handleFile = (e) => {
@@ -68,15 +72,26 @@ const NewRanking: FC = () => {
           initialValues={{
             rankingName: "",
           }}
-          onSubmit={(data) => {
+          onSubmit={(data, action) => {
             createRanking(data.rankingName);
+            action.resetForm();
           }}
+          validationSchema={SignupSchema}
         >
           {({ errors, touched, handleChange }) => (
             <FormikForm>
               <Form.Group className="mb-12" controlId="formNome">
                 <Form.Label>Título do ranking</Form.Label>
-                <Field name="rankingName" as={Form.Control} />
+                <Field
+                  name="rankingName"
+                  as={Form.Control}
+                  placeholder="Um título de 5 a 20 caracteres"
+                />
+                {errors.rankingName && touched.rankingName ? (
+                  <ValidationMessage className="text-danger">
+                    {errors.rankingName}
+                  </ValidationMessage>
+                ) : null}
               </Form.Group>
               <ButtonGroup size="lg" className="mb-4">
                 <Button variant="danger" className="px-3" type="submit">

@@ -19,43 +19,6 @@ const ProjectList: FC = () => {
     (ranking) => ranking.rankingId == rankingId
   );
 
-  const send = {
-    Projetos: [
-      {
-        CriterioA: 1,
-        CriterioB: 2,
-        CriterioC: 3,
-        CriterioD: 4,
-        CriterioE: 5,
-        CriterioF: 6,
-        CriterioG: 7,
-        CriterioH: 10000,
-        Nome: "Projeto 1",
-      },
-      {
-        CriterioA: 1,
-        CriterioB: 2,
-        CriterioC: 3,
-        CriterioD: 4,
-        CriterioE: 5,
-        CriterioF: 6,
-        CriterioG: 7,
-        CriterioH: 30000,
-        Nome: "Projeto 2",
-      },
-      {
-        CriterioA: 1,
-        CriterioB: 2,
-        CriterioC: 3,
-        CriterioD: 4,
-        CriterioE: 5,
-        CriterioF: 6,
-        CriterioG: 7,
-        CriterioH: 40000,
-        Nome: "Projeto 3",
-      },
-    ],
-  };
   const ranquear = (): void => {
     setIsLoading(true);
 
