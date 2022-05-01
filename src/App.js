@@ -28,11 +28,11 @@ function App() {
   const header = [
     {
       Header: "Prioridade",
-      accessor: "rankingNumber",
+      accessor: "position",
     },
     {
       Header: "Projeto",
-      accessor: "Nome",
+      accessor: "nome",
     },
   ];
 
@@ -130,7 +130,7 @@ function App() {
         </Modal.Header>
 
         <Modal.Body>
-          <Table columns={header} data={data} />
+          <Table columns={header} data={state.rankedProjects} />
         </Modal.Body>
       </Modal>
     </AppContext.Provider>

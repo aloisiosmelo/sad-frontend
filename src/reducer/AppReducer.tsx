@@ -1,6 +1,7 @@
 const initialState = {
   firstTimeUser: true,
   rankings: [],
+  rankedProjects: [],
   isFetching: false,
   rankingIdCounter: 0,
   isRankingModalOpened: false,
@@ -105,6 +106,7 @@ const AppReducer = (state, action) => {
       return {
         ...state,
         isRankingModalOpened: true,
+        rankedProjects: action.rankedProjects,
       };
     default:
       return { ...state };

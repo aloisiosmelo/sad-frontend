@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../../App";
@@ -7,9 +7,14 @@ import EmptyMessage from "../empty-message";
 import Project from "../project";
 import axios from "axios";
 
+const SetRanking = (projects) =>
+  projects.map((project, index) => ({ ...project, position: index + 1 }));
+
 const ProjectList: FC = () => {
   const { rankingId } = useParams();
   const { state, dispatch } = useContext(AppContext);
+
+  const [isLoading, setIsLoading] = useState(false);
   const ranking = state.rankings.find(
     (ranking) => ranking.rankingId == rankingId
   );
@@ -52,14 +57,21 @@ const ProjectList: FC = () => {
     ],
   };
   const ranquear = (): void => {
-    axios.post("https://localhost:7201", send).then((res) => console.log(res));
-  };
+    setIsLoading(true);
 
-  // const ListarRanking = (): void => {
-  //   const ranking = state.rankings.find(
-  //     (ranking) => ranking.rankingId == rankingId
-  //   );
-  // };
+    setTimeout(async () => {
+      const res = await axios.post("https://localhost:7201", {
+        Projetos: ranking.projects,
+      });
+
+      setIsLoading(false);
+
+      const projectsByNumber = SetRanking(res.data.data);
+      console.log(projectsByNumber);
+
+      dispatch({ type: "LIST_RANKING", rankedProjects: projectsByNumber });
+    }, 1500);
+  };
 
   return (
     <div className="d-flex gap-3 flex-wrap ">
@@ -67,8 +79,10 @@ const ProjectList: FC = () => {
         onClick={() => ranquear()}
         variant="danger"
         className="px-3 d-flex align-items-center gap-2"
+        disabled={isLoading}
       >
-        Ranquear <BarChartFill className="ml-3" />
+        {isLoading ? "Ranqueando..." : "Ranquear"}{" "}
+        <BarChartFill className="ml-3" />
       </Button>
       {!ranking ? (
         <EmptyMessage>Nenhum projeto foi encontrado</EmptyMessage>

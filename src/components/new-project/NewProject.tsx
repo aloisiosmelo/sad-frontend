@@ -6,6 +6,15 @@ import InputMask from "react-input-mask";
 import { Formik, Form as FormikForm, Field } from "formik";
 import InputNumber from "react-number-format";
 
+const RemoveFormat = (value) => {
+  return parseInt(
+    value
+      .split("")
+      .filter((char) => char >= "0" && char <= "9")
+      .join("")
+  );
+};
+
 const NewProject: FC = () => {
   const { dispatch, state } = useContext(AppContext);
   const { rankingId } = useParams();
@@ -37,7 +46,11 @@ const NewProject: FC = () => {
             CriterioH: "",
           }}
           onSubmit={(value) => {
-            createProject(value);
+            const project = {
+              ...value,
+              CriterioH: RemoveFormat(value.CriterioH),
+            };
+            createProject(project);
           }}
         >
           <FormikForm>
@@ -47,37 +60,37 @@ const NewProject: FC = () => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Impacto na função fim da UFPE</Form.Label>
-              <Field as={Form.Control} name="CriterioA" />
+              <Field as={Form.Control} name="CriterioA" type="number" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>
                 Risco de segurança dos usuários das instalaçõe
               </Form.Label>
-              <Field as={Form.Control} name="CriterioB" />
+              <Field as={Form.Control} name="CriterioB" type="number" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Risco patrimonial</Form.Label>
-              <Field as={Form.Control} name="CriterioC" />
+              <Field as={Form.Control} name="CriterioC" type="number" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>
                 O projeto já foi apresentado outras vezes para desenvolvimento?
               </Form.Label>
-              <Field as={Form.Control} name="CriterioD" />
+              <Field as={Form.Control} name="CriterioD" type="number" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>
                 Porcentagem de recurso disponível para construção.
               </Form.Label>
-              <Field as={Form.Control} name="CriterioE" />
+              <Field as={Form.Control} name="CriterioE" type="number" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Planejamento da manutenção.</Form.Label>
-              <Field as={Form.Control} name="CriterioF" />
+              <Field as={Form.Control} name="CriterioF" type="number" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Prazo para entrar em licitação</Form.Label>
-              <Field as={Form.Control} name="CriterioG" />
+              <Field as={Form.Control} name="CriterioG" type="number" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Custo estimado do ciclo de vida(R$)</Form.Label>
