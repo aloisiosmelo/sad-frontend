@@ -24,23 +24,47 @@ const ProjectList: FC = () => {
         CriterioE: 5,
         CriterioF: 6,
         CriterioG: 7,
-        CriterioH: 8,
+        CriterioH: 10000,
         Nome: "Projeto 1",
+      },
+      {
+        CriterioA: 1,
+        CriterioB: 2,
+        CriterioC: 3,
+        CriterioD: 4,
+        CriterioE: 5,
+        CriterioF: 6,
+        CriterioG: 7,
+        CriterioH: 30000,
+        Nome: "Projeto 2",
+      },
+      {
+        CriterioA: 1,
+        CriterioB: 2,
+        CriterioC: 3,
+        CriterioD: 4,
+        CriterioE: 5,
+        CriterioF: 6,
+        CriterioG: 7,
+        CriterioH: 40000,
+        Nome: "Projeto 3",
       },
     ],
   };
   const ranquear = (): void => {
-    axios.post("https://localhost:7201", send);
+    axios.post("https://localhost:7201", send).then((res) => console.log(res));
   };
 
-  const ListarRanking = (): void => {
-    dispatch({ type: "LIST_RANKING" });
-  };
+  // const ListarRanking = (): void => {
+  //   const ranking = state.rankings.find(
+  //     (ranking) => ranking.rankingId == rankingId
+  //   );
+  // };
 
   return (
     <div className="d-flex gap-3 flex-wrap ">
       <Button
-        onClick={() => ListarRanking()}
+        onClick={() => ranquear()}
         variant="danger"
         className="px-3 d-flex align-items-center gap-2"
       >

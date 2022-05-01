@@ -18,6 +18,14 @@ const RemoveFormat = (value) => {
   );
 };
 
+// <Field
+// name="rankingName"
+// thousandSeparator={true}
+// as={NumberFormat}
+// customInput={Form.Control}
+// removeFormatting={RemoveFormat}
+// />
+
 const NewRanking: FC = () => {
   const handleFile = (e) => {
     const [file] = e.target.files;
@@ -39,7 +47,7 @@ const NewRanking: FC = () => {
   const createRanking = (rankingName) => {
     dispatch({
       type: "CREATE_RANKING",
-      rankingName: rankingName.title,
+      rankingName: rankingName,
       date: moment().format("LL"),
     });
   };
@@ -60,23 +68,15 @@ const NewRanking: FC = () => {
           initialValues={{
             rankingName: "",
           }}
-          onSubmit={(e) => {
-            const { rankingName } = e;
-            console.log(RemoveFormat(rankingName));
+          onSubmit={(data) => {
+            createRanking(data.rankingName);
           }}
         >
           {({ errors, touched, handleChange }) => (
             <FormikForm>
               <Form.Group className="mb-12" controlId="formNome">
                 <Form.Label>Título do ranking</Form.Label>
-
-                <Field
-                  name="rankingName"
-                  thousandSeparator={true}
-                  as={NumberFormat}
-                  customInput={Form.Control}
-                  removeFormatting={RemoveFormat}
-                />
+                <Field name="rankingName" as={Form.Control} />
               </Form.Group>
               <ButtonGroup size="lg" className="mb-4">
                 <Button variant="danger" className="px-3" type="submit">
