@@ -1,14 +1,6 @@
 /* make the customizations */
-$theme-colors: (
-        "info": tomato,
-        "danger": teal,
-        "primary": #DB1E2F
-);
 
-$nav-tabs-link-active-bg: #DB1E2F;
-$nav-pills-link-active-bg: #DB1E2F;
-$nav-link-color: #DB1E2F;
-$nav-pills-border-radius: 10px;
-$nav-link-hover-color: #DB1E2F;
-
+$input-bg: rgb(247, 245, 245) !important;
+$input-focus-bg: white !important;
+$form-label-font-weight: normal !important;
 @import "../node_modules/bootstrap/scss/bootstrap";

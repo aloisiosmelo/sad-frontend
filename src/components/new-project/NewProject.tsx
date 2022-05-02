@@ -38,9 +38,13 @@ const NewProjectSchema = Yup.object().shape({
     .positive(messageForPositiveAndInteger)
     .integer(messageForPositiveAndInteger),
   CriterioE: Yup.number()
-    .required(messageForMandatoryField)
-    .positive(messageForPositiveAndInteger)
-    .integer(messageForPositiveAndInteger),
+    .test(
+      "Is equal o greater than 0",
+      "O valor precisa ser maior ou igual a 0",
+      (value) => value >= 0 && typeof value === "number"
+    )
+    .required(messageForMandatoryField),
+
   CriterioF: Yup.number()
     .required(messageForMandatoryField)
     .positive(messageForPositiveAndInteger)
@@ -68,7 +72,6 @@ const NewProject: FC = () => {
 
   return (
     <div>
-      <h1 className="fs-4 font-weight-normal pt-1">Novo Projeto</h1>
       <div className="d-flex align-items-start flex-wrap gap-5 pb-4 ">
         <Formik
           initialValues={{
@@ -92,7 +95,12 @@ const NewProject: FC = () => {
           validationSchema={NewProjectSchema}
         >
           {({ errors, touched }) => (
-            <FormikForm>
+            <FormikForm
+              style={{
+                width: "60%",
+                maxWidth: "400px",
+              }}
+            >
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Nome do projeto</Form.Label>
                 <Field as={Form.Control} name="Nome" />
@@ -109,7 +117,7 @@ const NewProject: FC = () => {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>
-                  Risco de segurança dos usuários das instalaçõe
+                  Risco de segurança dos usuários das instalações
                 </Form.Label>
                 <Field as={Form.Control} name="CriterioB" type="number" />
                 {errors.CriterioB && touched.CriterioB ? (
@@ -168,12 +176,9 @@ const NewProject: FC = () => {
                   <ValidationMessage>{errors.CriterioH}</ValidationMessage>
                 ) : null}
               </Form.Group>
-
-              <ButtonGroup size="lg" className="mb-4">
-                <Button variant="danger" className="px-3" type="submit">
-                  Registrar
-                </Button>
-              </ButtonGroup>
+              <Button variant="danger" className="px-5 py-3" type="submit">
+                Registrar
+              </Button>
             </FormikForm>
           )}
         </Formik>

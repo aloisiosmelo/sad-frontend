@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useState } from "react";
 import { Form, Button, ButtonGroup } from "react-bootstrap";
 import * as XLSX from "xlsx";
 import { AppContext } from "../../App";
@@ -31,6 +31,7 @@ const RemoveFormat = (value) => {
 };
 
 const NewRanking: FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const handleFile = (e) => {
     const [file] = e.target.files;
 
@@ -58,28 +59,35 @@ const NewRanking: FC = () => {
 
   return (
     <div>
-      <h1 className="fs-4 font-weight-normal">Novo Ranking</h1>
-      <div className="d-flex align-items-start flex-wrap gap-5 importar-bloco mb-4">
-        <Form.Group className="mb-12" controlId="formImportar">
-          <Form.Label>
-            Você pode importar uma planilhar ou adicionar um novo
-          </Form.Label>
-          <Form.Control type="file" onChange={handleFile} name="importar" />
-        </Form.Group>
-      </div>
+      {/* <h1 className="fs-4 font-weight-normal">Novo Ranking</h1> */}
       <div className="d-flex align-items-start flex-wrap gap-5">
         <Formik
           initialValues={{
             rankingName: "",
           }}
           onSubmit={(data, action) => {
-            createRanking(data.rankingName);
-            action.resetForm();
+            const send = new Promise((resolve, reject) => {
+              setIsLoading(true);
+              setTimeout(() => {
+                createRanking(data.rankingName);
+                resolve(null);
+              }, 1000);
+            });
+
+            send.then(() => {
+              action.resetForm();
+              setIsLoading(false);
+            });
           }}
           validationSchema={SignupSchema}
         >
           {({ errors, touched, handleChange }) => (
-            <FormikForm>
+            <FormikForm
+              style={{
+                width: "60%",
+                maxWidth: "300px",
+              }}
+            >
               <Form.Group className="mb-12" controlId="formNome">
                 <Form.Label>Título do ranking</Form.Label>
                 <Field
@@ -94,8 +102,13 @@ const NewRanking: FC = () => {
                 ) : null}
               </Form.Group>
               <ButtonGroup size="lg" className="mb-4">
-                <Button variant="danger" className="px-3" type="submit">
-                  Registrar
+                <Button
+                  disabled={isLoading}
+                  variant="danger"
+                  className="px-3"
+                  type="submit"
+                >
+                  {isLoading ? "Registrando" : "Registrar"}
                 </Button>
               </ButtonGroup>
             </FormikForm>
